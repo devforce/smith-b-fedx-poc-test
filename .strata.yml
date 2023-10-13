@@ -15,7 +15,8 @@ stages:
         parallel: true
         images:
           - dockerfile: ./Dockerfile.strata
-            image-name: codelab1/smith-b-fedx-poc-test
+            build-context: .
+            image-name: sfci/gec/devforce/smith-b-fedx-poc-test
+
   publish:
     - docker-push
-
