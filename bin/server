@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+rm -f /tmp/pids/puma.pid && \
+  RAILS_LOG_TO_STDOUT=true bundle exec puma -C config/puma.rb

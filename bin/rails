@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+APP_PATH = File.expand_path("../config/application", __dir__)
+
+lib = File.expand_path('../../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require "falcon_codelabs/falcon_codelabs"
+
+require_relative "../config/boot"
+require "rails/commands"
