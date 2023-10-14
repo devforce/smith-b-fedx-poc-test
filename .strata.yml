@@ -1,0 +1,22 @@
+global:
+  email-reply-to: noreply@salesforce.com
+  production-branches:
+    - main
+    - master
+stages:
+  build:
+    - step:
+        name: bundle
+        image: docker.repo.local.sfdc.net/sfci/gec/devforce/sfdc_centos7_ruby_3_2_nodejs16:a79bb0924e13eac1d69b13ec11196b9384f9a351
+        commands:
+          - RAILS_ENV=test ./strata-unit-tests.sh
+  package:
+    - docker-build:
+        parallel: true
+        images:
+          - dockerfile: ./Dockerfile.strata
+            build-context: .
+            image-name: sfci/gec/devforce/smith-b-fedx-poc-test
+
+  publish:
+    - docker-push
